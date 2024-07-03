@@ -1,19 +1,39 @@
 "use client";
 
 import React from 'react';
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Image, Text, Badge, VStack, HStack, Button } from '@chakra-ui/react';
 
-const CharacterDetail = ({ character }) => {
+const CharacterDetail = ({ character }) => { 
+    console.log("CharacterDetail",character);
+
   return (
-    <Box p={4}>
-      <Text fontSize="xl" fontWeight="bold">{character.name}</Text>
-      <Text>Gender: {character.gender}</Text>
-      <Text>Birth Year: {character.birth_year}</Text>
-      <Text>Height: {character.height}cm</Text>
-      <Text>Mass: {character.mass}kg</Text>
-      <Text>Hair Color: {character.hair_color}</Text>
-      <Text>Skin Color: {character.skin_color}</Text>
-    </Box>
+    <Box>
+    <VStack spacing={2} align="stretch">
+      <Text fontWeight="bold" fontSize="xl" color="teal.500">
+        {character.name}
+      </Text>
+
+      <HStack spacing={4}>
+        <Badge colorScheme="blue">Height: {character.height} cm</Badge>
+        <Badge colorScheme="purple">Mass: {character.mass} kg</Badge>
+      </HStack>
+
+      <HStack spacing={4}>
+        <Badge colorScheme="yellow">Hair: {character.hair_color}</Badge>
+        <Badge colorScheme="green">Skin: {character.skin_color}</Badge>
+      </HStack>
+
+      <HStack spacing={4}>
+        <Badge colorScheme="orange">Eyes: {character.eye_color}</Badge>
+        <Badge colorScheme="red">Birth: {character.birth_year}</Badge>
+        <Badge colorScheme="pink">Gender: {character.gender}</Badge>
+      </HStack>
+
+      <Text mt={2} fontSize="sm">
+        Films: {character.filmTitles.join(', ')}
+      </Text>
+    </VStack>
+  </Box>
   );
 };
 
