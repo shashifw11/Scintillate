@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import CharacterCard from "../views/components/CharacterCard";
 import Header from "../views/components/Header";
@@ -18,7 +17,7 @@ const Page = () => {
   const [characters, setCharacters] = useState([]);
   const [favorites, setFavorites] = useLocalStorage("favorites", []);
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true); // New loading state
+  const [loading, setLoading] = useState(true); 
 
   const getCharacterFilms = async (filmUrls) => {
     try {
@@ -51,14 +50,14 @@ const Page = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Set loading to true before fetching
+      setLoading(true); 
       try {
         const charactersWithFilms = await getCharacters(currentPage);
         setCharacters(charactersWithFilms);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false); 
       }
     };
     fetchData();
@@ -89,7 +88,9 @@ const Page = () => {
           />
         ))}
       </div>
+      <div style = {{textAlign:"end" , marginRight:"10px"}}>
       <Pagination currentPage={currentPage} onPageChange={setCurrentPage} />
+      </div>
     </div>
   );
 };

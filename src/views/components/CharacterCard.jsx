@@ -13,11 +13,12 @@ const CharacterCard = ({ character, isFavorite, onFavorite }) => {
       bg="white"
       _hover={{ boxShadow: 'xl', transform: 'scale(1.05)' }}
       transition="all 0.2s"
+      m={[2, 3]}
     >
       <Image src={`https://starwars-visualguide.com/assets/img/characters/${character.url.match(/\/(\d+)\//)[1]}.jpg`} alt={character.name} borderRadius="lg" />
       <Box p="6">
         <Box p="6">
-        <VStack spacing={2} align="stretch">
+        <VStack spacing={2} align="stretch" >
           <CharacterDetail character={character} />
           <Button
             mt={4}

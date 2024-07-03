@@ -7,7 +7,7 @@ const CharacterDetail = ({ character }) => {
     console.log("CharacterDetail",character);
 
   return (
-    <Box>
+    <Box> 
     <VStack spacing={2} align="stretch">
       <Text fontWeight="bold" fontSize="xl" color="teal.500">
         {character.name}
