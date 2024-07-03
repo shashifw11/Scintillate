@@ -21,13 +21,13 @@ const Main = () => {
 
   return (
     <Container maxW="container.xl" py={8}>
-      <Heading as="h1" mb={8}>Star Wars Characters</Heading>
+      {/* <Heading as="h1" mb={8}>Star Wars Characters</Heading>
       <Grid templateColumns="repeat(auto-fill, minmax(250px, 1fr))" gap={6}>
         {characters.map(character => (
           <CharacterCard key={character.name} character={character} />
         ))}
-      </Grid>
-      <Pagination page={page} setPage={setPage} />
+      </Grid> */}
+      {/* <Pagination page={page} setPage={setPage} /> */}
     </Container>
   );
 };

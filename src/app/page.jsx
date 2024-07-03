@@ -1,33 +1,67 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import CharacterCard from '../views/components/CharacterCard';
-import Header from '../views/components/Header';
-import Pagination from '../views/components/Pagination';
-import { fetchCharacters } from '../views/utils/api';
-import { useLocalStorage } from '../views/hooks/useLocalStorage';
+import CharacterCard from "../views/components/CharacterCard";
+import Header from "../views/components/Header";
+import Pagination from "../views/components/Pagination";
+import { fetchCharacters } from "../views/utils/api";
+import { useLocalStorage } from "../views/hooks/useLocalStorage";
 
 const styles = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-around',
-  margin: '20px 0'
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "space-around",
+  margin: "20px 0",
 };
-
-
 
 const Page = () => {
   const [characters, setCharacters] = useState([]);
-  const [favorites, setFavorites] = useLocalStorage('favorites', []);
+  const [favorites, setFavorites] = useLocalStorage("favorites", []);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true); // New loading state
+
+  const getCharacterFilms = async (filmUrls) => {
+    try {
+      const filmPromises = filmUrls.map((url) =>
+        fetch(url).then((response) => response.json())
+      );
+      const films = await Promise.all(filmPromises);
+      return films.map((film) => film.title);
+    } catch (error) {
+      console.error("Error fetching films:", error);
+      return [];
+    }
+  };
+
+  const getCharacters = async (page) => {
+    try {
+      const data = await fetchCharacters(page);
+      const charactersWithFilms = await Promise.all(
+        data.results.map(async (character) => {
+          const filmTitles = await getCharacterFilms(character.films);
+          return { ...character, filmTitles };
+        })
+      );
+      return charactersWithFilms;
+    } catch (error) {
+      console.error("Error fetching characters:", error);
+      return [];
+    }
+  };
 
   useEffect(() => {
-    const getCharacters = async () => {
-      const data = await fetchCharacters(currentPage);
-      setCharacters(data.results);
+    const fetchData = async () => {
+      setLoading(true); // Set loading to true before fetching
+      try {
+        const charactersWithFilms = await getCharacters(currentPage);
+        setCharacters(charactersWithFilms);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false); // Set loading to false after fetching
+      }
     };
-
-    getCharacters();
+    fetchData();
   }, [currentPage]);
 
   const handleFavorite = (character) => {
@@ -38,10 +72,14 @@ const Page = () => {
     }
   };
 
+  if (loading) {
+    return <div>Loading...</div>; // Render a loading state
+  }
+
   return (
     <div>
       <Header />
-      <div style={styles} className="character-list" >
+      <div style={styles} className="character-list">
         {characters.map((character) => (
           <CharacterCard
             key={character.name}
@@ -51,12 +89,7 @@ const Page = () => {
           />
         ))}
       </div>
-     
-      <Pagination
-        currentPage={currentPage}
-        onPageChange={setCurrentPage}
-      />
-      
+      <Pagination currentPage={currentPage} onPageChange={setCurrentPage} />
     </div>
   );
 };

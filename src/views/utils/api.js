@@ -1,3 +1,4 @@
+
 export const fetchCharacters = async (page) => {
   const res = await fetch(`https://swapi.dev/api/people/?page=${page}`);
   const data = await res.json();
@@ -9,3 +10,4 @@ export const fetchCharacter = async (id) => {
   const data = await res.json();
   return data;
 };
+  
