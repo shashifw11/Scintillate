@@ -19,7 +19,7 @@ const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true); 
 
-   console.log("characters",characters);
+  //  console.log("characters",characters);  
 
   const getCharacterFilms = async (filmUrls) => {
     try {
@@ -50,6 +50,8 @@ const Page = () => {
     }
   };
 
+  
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true); 
@@ -64,6 +66,8 @@ const Page = () => {
     };
     fetchData();
   }, [currentPage]);
+
+  
 
   const handleFavorite = (character) => {
     if (favorites.includes(character.name)) {

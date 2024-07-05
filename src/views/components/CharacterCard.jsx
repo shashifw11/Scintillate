@@ -8,7 +8,9 @@ const CharacterCard = ({ character, isFavorite, onFavorite }) => {
   const handleFavoriteClick = (e) => {
     e.stopPropagation(); 
     onFavorite(character);
+
   };
+  console.log("characters",character);
 
   return ( 
     <Link href={`/character/${encodeURIComponent(character.name)}`}>

@@ -31,7 +31,7 @@ const CharacterDetail = ({ character }) => {
       </HStack>
 
       <Text mt={2} fontSize="sm">
-        {/* Films: {character.filmTitles.join(', ')} */}
+        Films: {character.filmTitles.join(', ')}
       </Text>
     </VStack>
   </Box>
