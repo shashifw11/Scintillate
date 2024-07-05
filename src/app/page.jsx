@@ -19,6 +19,8 @@ const Page = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true); 
 
+   console.log("characters",characters);
+
   const getCharacterFilms = async (filmUrls) => {
     try {
       const filmPromises = filmUrls.map((url) =>

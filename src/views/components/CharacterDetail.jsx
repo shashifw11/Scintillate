@@ -14,6 +14,7 @@ const CharacterDetail = ({ character }) => {
       </Text>
 
       <HStack spacing={4}>
+         shashi
         <Badge colorScheme="blue">Height: {character.height} cm</Badge>
         <Badge colorScheme="purple">Mass: {character.mass} kg</Badge>
       </HStack>

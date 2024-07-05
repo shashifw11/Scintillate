@@ -13,3 +13,5 @@ export const fetchCharacter = async (name) => {
     throw new Error('Character not found');
   }
 };
+
+

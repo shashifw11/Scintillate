@@ -31,7 +31,14 @@ const CharacterPage = () => {
   if (loading) {
     return (
       <Center height="100vh">
-        <Spinner size="xl" />
+        {/* <Spinner
+          thickness='4px'
+          speed='0.65s'
+          emptyColor='gray.200'
+          color='blue.500'
+          size='xl'
+        /> */}
+        <p style = {{fontSize:"40px"}}>...Loading</p>
       </Center>
     );
   }
@@ -47,13 +54,13 @@ const CharacterPage = () => {
   return (
     <Center height="100vh">
       <Box
-        maxW="md"
-        borderWidth="1px"
-        borderRadius="lg"
-        overflow="hidden"
-        boxShadow="lg"
-        bg="white"
-        p="6"
+         maxW="sm"
+         borderWidth="1px"
+         borderRadius="lg"
+         overflow="hidden"
+         boxShadow="lg"
+         bg="white"
+         m={[2, 3]}
       >
         <VStack spacing={4}>
           <Image

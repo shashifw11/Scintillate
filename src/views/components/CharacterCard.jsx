@@ -6,7 +6,7 @@ import Link from "next/link";
 const CharacterCard = ({ character, isFavorite, onFavorite }) => { 
    
   const handleFavoriteClick = (e) => {
-    e.stopPropagation(); // Prevent card click event from triggering
+    e.stopPropagation(); 
     onFavorite(character);
   };
 
@@ -32,7 +32,6 @@ const CharacterCard = ({ character, isFavorite, onFavorite }) => {
           <Button
             mt={4}
             colorScheme={isFavorite ? 'red' : 'teal'}
-            // onClick={() => onFavorite(character)}
             onClick={handleFavoriteClick}
           >
             {isFavorite ? 'Unfavorite' : 'Favorite'}
