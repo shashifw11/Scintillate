@@ -72,7 +72,7 @@ const Page = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Render a loading state
+    return <div>Loading...</div>; 
   }
 
   return (

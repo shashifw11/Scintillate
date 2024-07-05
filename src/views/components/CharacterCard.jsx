@@ -1,9 +1,17 @@
 import React from 'react';
 import { Box, Image, Text, Badge, VStack, HStack, Button } from '@chakra-ui/react';
 import CharacterDetail from "./CharacterDetail"
+import Link from "next/link";
 
-const CharacterCard = ({ character, isFavorite, onFavorite }) => {
-  return (
+const CharacterCard = ({ character, isFavorite, onFavorite }) => { 
+   
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation(); // Prevent card click event from triggering
+    onFavorite(character);
+  };
+
+  return ( 
+    <Link href={`/character/${encodeURIComponent(character.name)}`}>
     <Box
       maxW="sm"
       borderWidth="1px"
@@ -20,17 +28,21 @@ const CharacterCard = ({ character, isFavorite, onFavorite }) => {
         <Box p="6">
         <VStack spacing={2} align="stretch" >
           <CharacterDetail character={character} />
+
           <Button
             mt={4}
             colorScheme={isFavorite ? 'red' : 'teal'}
-            onClick={() => onFavorite(character)}
+            // onClick={() => onFavorite(character)}
+            onClick={handleFavoriteClick}
           >
             {isFavorite ? 'Unfavorite' : 'Favorite'}
+           
           </Button>
         </VStack>
       </Box>
       </Box>
     </Box>
+    </Link>
   );
 };
 
